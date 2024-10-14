@@ -22,3 +22,4 @@ secrets.json
 # Ignore launchSettings.json
 Properties/launchSettings.json
 /APIFood/APIFood/Properties
+/APIFood/Food/Properties
