@@ -14,3 +14,8 @@ obj/
 
 # Logs
 *.log
+# Bỏ qua các file cấu hình nhạy cảm
+.env
+appsettings.json
+appsettings.Development.json
+secrets.json
