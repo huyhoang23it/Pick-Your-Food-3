@@ -1,3 +1,5 @@
+using APIFood.Repository;
+
 namespace APIFood
 {
     public class Program
@@ -7,7 +9,7 @@ namespace APIFood
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddScoped<IFoodRepository, FoodRepository>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
