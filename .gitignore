@@ -1,0 +1,16 @@
+# Binaries
+bin/
+obj/
+
+# Visual Studio stuff
+.vscode/
+.vs/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
