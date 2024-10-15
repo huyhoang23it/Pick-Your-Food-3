@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Food.Models.Foods>
+@{
+    ViewData["Title"] = "Danh Sách Món Ăn";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        .food-image {
+            width: 100%;
+            height: auto;
+            max-height: 150px; /* Giới hạn chiều cao hình ảnh */
+            object-fit: cover; /* Giữ tỷ lệ hình ảnh */
+        }
+        .table th, .table td {
+            vertical-align: middle; /* Canh giữa nội dung */
+        }
+        .action-buttons a {
+            margin-right: 5px; /* Khoảng cách giữa các nút */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Danh Sách Món Ăn</h1>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <div class="text-right mb-3">
+            <a asp-controller="Food" asp-action="Create" class="btn btn-primary">Thêm Món Ăn Mới</a>
+        </div>
+
+        <form method="post" asp-controller="Food" asp-action="SendOrder">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Chọn</th>
+                        <th>ID</th>
+                        <th>Tên Món Ăn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var food in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="selectedFoods" value="@food.Id" />
+                                </td>
+                                <td>@food.Id</td>
+                                <td>@food.Name</td>                                 
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">Không có món ăn nào trong danh sách.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            
+            <div class="text-center mb-4">
+                <input type="text" name="phoneNumber" placeholder="Nhập số điện thoại" class="form-control mb-2" required />
+                <button type="submit" class="btn btn-success">Gửi Đến Số Điện Thoại</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

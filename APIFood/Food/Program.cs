@@ -1,3 +1,5 @@
+using Food.Services;
+
 namespace Food
 {
     public class Program
@@ -8,7 +10,8 @@ namespace Food
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddHttpClient<FoodService>();
+            builder.Services.AddTransient<SMSServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
